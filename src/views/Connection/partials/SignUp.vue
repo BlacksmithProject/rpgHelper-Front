@@ -67,9 +67,9 @@ export default {
     signUp: function () {
       this.clearError()
       this.loading = true
-      axios.post(process.env.VUE_APP_API_URL + '/players', this.formData)
+      axios.post(process.env.VUE_APP_API_URL + '/users', this.formData)
         .then((response) => {
-          this.$store.dispatch('signIn', response.data.player)
+          this.$store.dispatch('signIn', response.data.user)
           this.$router.push({ name: 'home' })
         })
         .catch((error) => {

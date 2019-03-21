@@ -5,40 +5,40 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    player: {
-      id: sessionStorage.getItem('player.id') || null,
-      email: sessionStorage.getItem('player.email') || null,
-      name: sessionStorage.getItem('player.name') || null,
-      token: sessionStorage.getItem('player.token') || null
+    user: {
+      id: sessionStorage.getItem('user.id') || null,
+      email: sessionStorage.getItem('user.email') || null,
+      name: sessionStorage.getItem('user.name') || null,
+      token: sessionStorage.getItem('user.token') || null
     }
   },
   getters: {
     isAuthenticated: function (state) {
-      return state.hasOwnProperty('player') &&
-        state.player !== null &&
-        state.player.hasOwnProperty('token') &&
-        state.player.token !== null
+      return state.hasOwnProperty('user') &&
+        state.user !== null &&
+        state.user.hasOwnProperty('token') &&
+        state.user.token !== null
     }
   },
   mutations: {
-    setPlayer: function (state, player) {
-      state.player = player
+    setuser: function (state, user) {
+      state.user = user
     }
   },
   actions: {
-    signIn: function ({ commit }, player) {
-      sessionStorage.setItem('player.id', player.id)
-      sessionStorage.setItem('player.email', player.email)
-      sessionStorage.setItem('player.name', player.name)
-      sessionStorage.setItem('player.token', player.token)
-      commit('setPlayer', player)
+    signIn: function ({ commit }, user) {
+      sessionStorage.setItem('user.id', user.id)
+      sessionStorage.setItem('user.email', user.email)
+      sessionStorage.setItem('user.name', user.name)
+      sessionStorage.setItem('user.token', user.token)
+      commit('setuser', user)
     },
     logOut: function ({ commit }) {
-      commit('setPlayer', null)
-      sessionStorage.removeItem('player.id')
-      sessionStorage.removeItem('player.email')
-      sessionStorage.removeItem('player.name')
-      sessionStorage.removeItem('player.token')
+      commit('setuser', null)
+      sessionStorage.removeItem('user.id')
+      sessionStorage.removeItem('user.email')
+      sessionStorage.removeItem('user.name')
+      sessionStorage.removeItem('user.token')
     }
   }
 })

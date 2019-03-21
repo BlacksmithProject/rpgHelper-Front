@@ -64,14 +64,14 @@ export default {
       this.clearError()
       this.loading = true
 
-      axios.get(process.env.VUE_APP_API_URL + '/players', {
+      axios.get(process.env.VUE_APP_API_URL + '/users', {
         auth: {
           username: this.email,
           password: this.password
         }
       })
         .then((response) => {
-          this.$store.dispatch('signIn', response.data.player)
+          this.$store.dispatch('signIn', response.data.user)
           this.$router.push({ name: 'home' })
         })
         .catch((error) => {
